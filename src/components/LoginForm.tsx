@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Pressable,
 } from "react-native";
-
+import { Image } from "expo-image";
 const LoginForm = () => {
   const [username, setUsername] = useState("teste");
   const [password, setPassword] = useState("123");
@@ -40,13 +40,22 @@ const LoginForm = () => {
       />
       {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
       <Pressable style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Login</Text>
+        {/* <Text style={styles.buttonText}>Login</Text> */}
+        <Image
+          style={styles.image}
+          contentFit="cover"
+          source={require("./logoImage.jpeg")}
+        />
       </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  image: {
+    width: 200,
+    height: 100,
+  },
   buttonText: {
     color: "white",
   },
@@ -75,27 +84,10 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#4CAF50", // Green color
+    // backgroundColor: "#CD853F", // Green color
     borderRadius: 10,
     paddingHorizontal: 20, // Add horizontal padding
     paddingVertical: 15, // Add vertical padding
-  },
-  backgroundLayer1: {
-    position: "absolute", // Position layer on top
-    top: 0, // Set top position to 0
-    left: 0, // Set left position to 0
-    width: "100%", // Span entire width
-    height: "100%", // Span entire height
-    backgroundColor: "#f0f0f0", // Light gray base color
-    opacity: 0.8, // Add some transparency
-  },
-  backgroundLayer2: {
-    position: "absolute", // Position layer on top
-    top: 0, // Set top position to 0
-    left: 0, // Set left position to 0
-    width: "100%", // Span entire width
-    height: "100%", // Span entire height
-    backgroundColor: "rgba(0, 0, 0, 0.2)", // Semi-transparent black overlay
   },
 });
 
