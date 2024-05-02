@@ -15,7 +15,6 @@ export default function menu() {
   const [sections, setSections]: any = useState([]); // State variable for sections
 
   useEffect(() => {
-    // Transform data into sections using the improved grouping logic
     const transformedData = dataCrude.reduce((acc, item) => {
       const brandGroup = acc.get(item.brand) || { brand: item.brand, data: [] };
       brandGroup.data.push(item);
@@ -23,7 +22,6 @@ export default function menu() {
       return acc;
     }, new Map());
     setSections(Array.from(transformedData.values()));
-    // Convert Map to array and set the sections state
   }, []); // Empty dependency array to run the effect only once
 
   return (
@@ -46,6 +44,9 @@ export default function menu() {
   );
 }
 const styles = StyleSheet.create({
+  sectionContainer: {
+    alignItems: "center",
+  },
   sectionTitle: {
     // marginTop: 16,
     fontWeight: "bold",
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ddd",
   },
   itemContainer: {
+    alignSelf: "center",
     backgroundColor: "#fff", // White background
     borderStyle: "solid",
     borderColor: "#ddd",

@@ -1,6 +1,5 @@
 import { Stack } from "expo-router";
 import React from "react";
-
 import HeaderApp from "../components/HeaderApp";
 
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";

@@ -20,7 +20,7 @@ const HeaderApp = ({ buttons }: { buttons: string[] }) => {
       (selectedIndex) => {
         switch (selectedIndex) {
           case aboutButtonIndex:
-            router.replace("/about");
+            router.push("/about");
             break;
 
           case destructiveButtonIndex:
@@ -35,11 +35,11 @@ const HeaderApp = ({ buttons }: { buttons: string[] }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Carros Delicia</Text>
-      <Pressable onPress={onPress}>
+      <Pressable style={styles.menuButton} onPress={onPress}>
         <Image
           style={styles.image}
           source={require("./burger-menu-right-svgrepo-com.svg")}
-          contentFit="contain"
+          resizeMode="contain"
         />
       </Pressable>
     </View>
@@ -58,10 +58,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   image: {
-    flex: 1,
-    width: 30,
-    height: 5,
-    marginRight: 20,
-    // marginRight: -40,
+    width: 50,
+    height: 40,
+  },
+  menuButton: {
+    marginRight: 75,
   },
 });
