@@ -19,7 +19,8 @@ const RootLayout = () => {
         <Stack.Screen
           name="menu"
           options={{
-            headerTitle: () => (
+            headerTitle: "Carros Delicias",
+            headerRight: () => (
               <HeaderApp buttons={["Logout", "Cancel", "About"]} />
             ),
           }}
@@ -27,7 +28,8 @@ const RootLayout = () => {
         <Stack.Screen
           name="about"
           options={{
-            headerTitle: () => <HeaderApp buttons={["Logout", "Cancel"]} />,
+            headerTitle: "Carros Delicias",
+            headerRight: () => <HeaderApp buttons={["Logout", "Cancel"]} />,
           }}
         />
       </Stack>

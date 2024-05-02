@@ -1,11 +1,12 @@
 import React from "react";
 import { Image } from "expo-image";
+import { CommonActions } from "@react-navigation/native";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { useActionSheet } from "@expo/react-native-action-sheet";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
 const HeaderApp = ({ buttons }: { buttons: string[] }) => {
   const { showActionSheetWithOptions } = useActionSheet();
-
+  const navigation = useNavigation();
   const onPress = () => {
     const options = buttons;
     const destructiveButtonIndex = 0;
@@ -24,7 +25,12 @@ const HeaderApp = ({ buttons }: { buttons: string[] }) => {
             break;
 
           case destructiveButtonIndex:
-            router.replace("/");
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{ name: "index" }],
+              }),
+            );
             break;
 
           case cancelButtonIndex:
@@ -33,25 +39,19 @@ const HeaderApp = ({ buttons }: { buttons: string[] }) => {
     );
   };
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Carros Delicia</Text>
-      <Pressable style={styles.menuButton} onPress={onPress}>
-        <Image
-          style={styles.image}
-          source={require("./burger-menu-right-svgrepo-com.svg")}
-          resizeMode="contain"
-        />
-      </Pressable>
-    </View>
+    <Pressable onPress={onPress}>
+      <Image
+        style={styles.image}
+        source={require("./burger-menu-right-svgrepo-com.svg")}
+        resizeMode="contain"
+      />
+    </Pressable>
   );
 };
 
 export default HeaderApp;
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-  },
   text: {
     flex: 1,
     fontSize: 30,
@@ -60,8 +60,5 @@ const styles = StyleSheet.create({
   image: {
     width: 50,
     height: 40,
-  },
-  menuButton: {
-    marginRight: 75,
   },
 });
